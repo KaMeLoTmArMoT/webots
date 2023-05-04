@@ -1,0 +1,220 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5773502691896257 0.5773502691896257 0.5773502691896257 2.0943245915045035
+  position 0.011078859189444975 4.6950050293884105e-05 118.04319213390085
+}
+TexturedBackground {
+}
+RectangleArena {
+  floorSize 50 50
+  wallThickness 0.1
+  wallHeight 3
+}
+Robot {
+  translation -30 0 15
+  rotation 0 1 0 0.6981
+  children [
+    Lidar {
+      name "my_lidar_sensor"
+      horizontalResolution 1920
+      verticalFieldOfView 1.0248
+      numberOfLayers 1080
+      maxRange 100
+      projection "planar"
+      defaultFrequency 30
+      minFrequency 10
+      maxFrequency 35
+    }
+    Solid {
+      rotation 0 1 0 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+        Camera {
+          name "static_camera"
+          fieldOfView 1.5708
+          width 1920
+          height 1080
+        }
+      ]
+    }
+  ]
+  name "static_camera_obj"
+  controller "static_camera_controller"
+}
+Robot {
+  translation -0.0010692083352801182 0.013089338914529965 0.1842983233484317
+  rotation 0.0017168168001957993 0.0007184181078229048 -0.9999982682062489 0.008404854021994534
+  scale 7 7 7
+  children [
+    GPS {
+      name "MY_GPS"
+    }
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor 0.917647 0.145098 0.145098
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.1 0.05
+      }
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 292.9582957340366
+        axis 0 1 0
+        anchor 0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04999889095910473 0.06000000000000332 -1.0984870941780928e-06
+        rotation -0.2828357246853473 0.6782332096993697 -0.6782357009938398 3.6928633877298225
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.305882 0.898039 0.25098
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+              subdivision 24
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 281.45251863795716
+        axis 0 1 0
+        anchor 0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04999849979539733 -0.059999999999996716 4.3135157128983905e-07
+        rotation -0.684550273572839 0.5154556096519542 -0.5154575030297679 4.342152408306012
+        children [
+          USE WHEEL
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL3 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 292.93915729329893
+        axis 0 1 0
+        anchor -0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation -0.050001087815745006 0.06000000000000333 -1.119509941216076e-06
+        rotation -0.2758316437239694 0.6796740066325765 -0.679676503219402 3.679869208378155
+        children [
+          USE WHEEL
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL4 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 281.4327388601312
+        axis 0 1 0
+        anchor -0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.050001508442624465 -0.05999999999999667 4.015954142851489e-07
+        rotation -0.6770539222238214 0.5203825501497351 -0.520384461625247 4.3319079379115815
+        children [
+          USE WHEEL
+        ]
+        name "solid(3)"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF DS_RIGHT DistanceSensor {
+      translation 0.1 -0.03 0
+      rotation 0 0 1 -0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.184314 0.596078 0.847059
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+    }
+    DEF DS_LEFT DistanceSensor {
+      translation 0.1 0.03 0
+      rotation 0 0 1 0.3
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.184314 0.596078 0.847059
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+    }
+  ]
+  name "4w_avoidence"
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "my_controller"
+  linearVelocity -3.4734795507391674e-07 2.9154341130198247e-09 -3.698316647782487e-10
+  angularVelocity -1.1105920126334663e-08 -1.3230388113089906e-06 4.288124832808035e-09
+}
